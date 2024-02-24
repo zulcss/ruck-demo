@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for kernel in /boot/vmlinuz-*; 
+do
+    echo "Installing ${kernel}"
+    kernel-install --verbose add "${kernel#*-}" "${kernel}"
+done

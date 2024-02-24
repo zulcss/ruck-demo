@@ -1,0 +1,20 @@
+---
+name: ExampleOs
+parameters:
+  target: rootfs.tar.gz
+  iamge: demo.img
+steps:
+  - name: bootstrap
+    options:
+      suite: bookworm
+      target: rootfs
+  - name: disk
+    options:
+      definitions: definitions
+      size: 10G
+   - name: shell
+     options:
+       chroot: True
+       shell: |
+         apt-get update -y
+         apt-get install podman
