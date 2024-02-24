@@ -4,17 +4,21 @@ parameters:
   target: rootfs.tar.gz
   iamge: demo.img
 steps:
-  - name: bootstrap
+  - step: bootstrap
     options:
       suite: bookworm
       target: rootfs
-  - name: disk
+  - step: disk
     options:
       definitions: definitions
       size: 10G
-   - name: shell
-     options:
-       chroot: True
-       shell: |
-         apt-get update -y
-         apt-get install podman
+  - step: deploy
+    options:
+      source: rootfs.tar.gz
+      target: demo.img
+  - step: shell
+    options:
+      chroot: True
+      shell: |
+        apt-get update -y
+        apt-get install podman
